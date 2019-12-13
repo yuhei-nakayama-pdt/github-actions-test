@@ -2,7 +2,7 @@ name: Checklist
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened]
 
 jobs:
   comment:
@@ -16,5 +16,6 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const fs = require('fs')
+            const owner = 'チェックリストBot'
             const body = fs.readFileSync('./checklist.md', 'utf8')
-            await github.issues.createComment({ ...context.issue, body })
+            await github.issues.createComment({ ...context.issue, owner, body })

@@ -18,4 +18,4 @@ jobs:
             const __dirname = path.resolve(path.dirname(''));
             const ls = child_process.execSync("ls");
             // await github.issues.createComment({...context.issue, body: fs.readFileSync(`${__dirname}/checklist.md`, 'utf8')})
-            await github.issues.createComment({...context.issue, body: ls })
+            await github.issues.createComment({...context.issue, body: ls.toString() })

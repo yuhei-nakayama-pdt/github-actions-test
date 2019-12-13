@@ -15,5 +15,5 @@ jobs:
             const fs = require('fs')
             const path = require('path')
             const __dirname = path.resolve(path.dirname(''));
-            // await github.issues.createComment({...context.issue, body: fs.readFileSync('./checklist.md', 'utf8')})
-            await github.issues.createComment({...context.issue, body: __dirname })
+            await github.issues.createComment({...context.issue, body: fs.readFileSync(`${__dirname}/../checklist.md`, 'utf8')})
+            // await github.issues.createComment({...context.issue, body: __dirname })

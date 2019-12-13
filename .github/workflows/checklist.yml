@@ -8,16 +8,19 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/github-script@0.3.0
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const fs = require('fs')
             const path = require('path')
-            const child_process = require('child_process')
             const __dirname = path.resolve(path.dirname(''))
-            const ls = child_process.spawnSync(`ls ${__dirname}/../`).stdout.toString()
+            // const child_process = require('child_process')
+            // const ls = child_process.spawnSync(`ls ${__dirname}/../`).stdout.toString()
             await github.issues.createComment({...context.issue, body: __dirname })
-            await github.issues.createComment({...context.issue, body: ls })
-            // await github.issues.createComment({...context.issue, body: fs.readFileSync(`${__dirname}/checklist.md`, 'utf8')})
+            // await github.issues.createComment({...context.issue, body: ls })
+            /await github.issues.createComment({...context.issue, body: fs.readFileSync(`${__dirname}/checklist.md`, 'utf8')})
             // await github.issues.createComment({...context.issue, body: ls.toString() })

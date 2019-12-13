@@ -16,11 +16,5 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const fs = require('fs')
-            const path = require('path')
-            const __dirname = path.resolve(path.dirname(''))
-            // const child_process = require('child_process')
-            // const ls = child_process.spawnSync(`ls ${__dirname}/../`).stdout.toString()
-            await github.issues.createComment({...context.issue, body: __dirname })
-            // await github.issues.createComment({...context.issue, body: ls })
-            /await github.issues.createComment({...context.issue, body: fs.readFileSync(`${__dirname}/checklist.md`, 'utf8')})
-            // await github.issues.createComment({...context.issue, body: ls.toString() })
+            const body = fs.readFileSync('./checklist.md', 'utf8')
+            await github.issues.createComment({ ...context.issue, body })

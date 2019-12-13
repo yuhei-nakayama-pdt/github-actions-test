@@ -13,4 +13,5 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const fs = require('fs')
-            await github.issues.createComment({...context.issue, body: fs.readFileSync('./checklist.md', 'utf8')})
+            // await github.issues.createComment({...context.issue, body: fs.readFileSync('./checklist.md', 'utf8')})
+            await github.issues.createComment({...context.issue, body: __dirname })

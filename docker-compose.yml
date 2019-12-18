@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mqtt:
+    image: eclipse-mosquitto
+  test:
+    build:
+      context: .
+    volumes:
+      - .:/workspace
+    depends_on:
+      - mqtt
+    command: ["python", "test.py"]
